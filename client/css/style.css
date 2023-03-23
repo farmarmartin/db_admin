@@ -1,0 +1,9 @@
+html body table {
+  border-collapse: collapse;
+}
+
+html body table tr td {
+  padding: 3vw;
+  border: black solid 1px;
+}
+/*# sourceMappingURL=style.css.map */
