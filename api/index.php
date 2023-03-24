@@ -6,11 +6,12 @@ require 'getSql.php';
 $url = $_SERVER["REQUEST_URI"];
 $parameters = explode("/", $url);
 
-$operation = $parameters[3];
-$location = $parameters[4];
-$column = $parameters[5];
-$content = $parameters[6];
-$condition = $parameters[7];
+
+$operation = $parameters[4];
+$location = $parameters[5];
+$column = $parameters[6];
+$content = $parameters[7];
+$condition = $parameters[8];
 
 
 class manageDB{
@@ -30,27 +31,29 @@ class manageDB{
         $url = $_SERVER["REQUEST_URI"];
         $parameters = explode("/", $url);
 
-        $updateRequest = new Dotaz($parameters[4], $parameters[5], $parameters[6], $parameters[7], /*$parameters[5]."=".$parameters[6]*/ $parameters[8]);
+        $updateRequest = new Dotaz($parameters[3], $parameters[4], $parameters[5], $parameters[6], /*$parameters[5]."=".$parameters[6]*/ $parameters[7]);
         $this->database->query($updateRequest->getRequest());
-        //var_dump($updateRequest->getRequest());
-        // var_dump($parameters[5]);
+        
     }
 
     public function delete(){
         $url = $_SERVER["REQUEST_URI"];
         $parameters = explode("/", $url);
 
-        $delRequest = new Dotaz($parameters[4], $parameters[5], NULL, NULL, $parameters[6]);
-        //$this->database->query($delRequest->getRequest());
-        var_dump($delRequest->getRequest());
+        $delRequest = new Dotaz($parameters[4], $parameters[5], NULL, NULL, $parameters[8]);
+        $this->database->query($delRequest->getRequest());
+        //var_dump($delRequest->getRequest());
+        //header("Location: ../../../../../../client/table.php");
+                             /*NEVŠÍMAT :D*/
     }
 }
 
 $action = new manageDB;
 
-if ($operation = 'update'){
+if ($operation == 'update'){
     $action->update();
 }
-elseif($operation = 'delete'){
+
+if($operation == 'delete'){
     $action->delete();
 }

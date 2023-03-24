@@ -8,7 +8,7 @@
     <title>profile</title>
 </head>
 <body>
-    <button onclick="location.href = 'insert.php';">+</button>
+    <button onclick="'insert.php';">+</button>
     <form method="post">
         <table>
             <tr>
@@ -28,7 +28,7 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $i++;
                     echo "<tr id='$i'>";           
-                    echo "<td>".$row['id']."<button type='submit' value='".'id='.$row['id']."' name='edit' id='$i.edit'>E</button><button value='".'id='.$row['id']."' name='del'>D</button>";
+                    echo "<td>".$row['id']."<button type='submit' value='".'id='.$row['id']."' name='edit' id='$i.edit'>E</button><button onclick="."location.href='table.php' "."value=".'id='.$row['id']."' name='del'>D</button>";
                     echo "<td>".$row['terminal']."<button type='submit' value='".'terminál='.$row['terminal']."' name='edit' id='$i.edit'>E</button></td><br>";
                     echo "<td>".$row['gate']."<button type='submit' value='".'gate='.$row['gate']."' name='edit' id='$i.edit'>E</button></td>";
                     echo "<td>".$row['letadlo']."<button type='submit' value='".'letadlo='.$row['letadlo']."' name='edit' id='$i.edit'>E</button></td>";
@@ -49,8 +49,12 @@
                         applyChanges($column, $data);
                     }
                 }
+            
                 elseif(isset($_POST['del'])){
-                    header('Location: ../api/index.php/del/let/');
+                    $info = explode("=", $_POST['del']);
+                    $column = $info[0];
+                    $data = $info[1];
+                    header("Location: ../api/index.php/delete/let/NULL/NULL/$column='$data");
                 }
 
                 function applyChanges($column, $data){
@@ -62,6 +66,5 @@
             ?>
         </table>
     </form>
-    
 </body>
 </html>
