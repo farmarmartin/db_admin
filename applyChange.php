@@ -15,7 +15,7 @@ if (isset($_POST['new_value'])){
     $updateSql = new Dotaz('update', 'let', $column, "$new_value", "id='$id'");
     $db->query($updateSql->getRequest());
     //echo $updateSql->getRequest();
-    header('Location: table.php');
+    header('Location: index.php');
 }
 
 if(isset($_POST['vlozit'])){
@@ -26,7 +26,7 @@ if(isset($_POST['vlozit'])){
 
     $insert = new Dotaz('insert', 'let', '(id, terminal, gate, letadlo)', "('$id', '$terminal', '$gate', '$letadlo')");
     $db->query($insert->getRequest());
-    header('Location: table.php');
+    header('Location: index.php');
 }
 
 if(isset($_POST['yes-delete'])){
@@ -36,8 +36,8 @@ if(isset($_POST['yes-delete'])){
 
     $delSql = new Dotaz('delete', 'let', NULL, NULL, "$column='$data'");
     $db->query($delSql->getRequest());
-    header('Location: table.php');
+    header('Location: index.php');
 
 }elseif(isset($_POST['no-delete'])){
-    header("Location: table.php");
+    header("Location: index.php");
 }
