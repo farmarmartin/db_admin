@@ -18,6 +18,8 @@ class Dotaz{
                 return "UPDATE $this->location SET $this->target = '$this->value' WHERE $this->condition;";
             case 'delete':
                 return "DELETE FROM $this->location WHERE $this->condition;";
+            case 'insert':
+                return "INSERT INTO $this->location $this->target VALUES $this->value";
         }
     }
 }
